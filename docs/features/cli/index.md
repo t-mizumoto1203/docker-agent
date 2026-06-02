@@ -48,6 +48,7 @@ $ docker agent run [config] [message...] [flags]
 | `--template <image>`                    | Template image for the sandbox (default: `docker/sandbox-templates:docker-agent`)                                                         |
 | `--sbx`                                 | Prefer the `sbx` CLI backend when available (default `true`; set `--sbx=false` to force `docker sandbox`)                                 |
 | `--no-kit`                              | Disable the [auto-kit]({{ '/configuration/sandbox/' | relative_url }}#auto-kit): do not stage skills or prompt files into the sandbox    |
+| `--agent-picker [refs]`                 | Show a full-screen interactive picker before launching, letting you browse and select an agent. Accepts an optional comma-separated list of agent references to show (defaults to `default,coder`). Arrow keys navigate; `?` toggles the YAML preview panel; Enter confirms. Not available in `--exec` or non-TTY modes. |
 | `--working-dir <path>`                  | Set the working directory for the session (applies to tools and relative paths)                                                           |
 | `--env-from-file <path>`                | Load environment variables from file (repeatable)                                                                                         |
 | `--code-mode-tools`                     | Provide a single tool to call other tools via JavaScript (forces code-mode tools globally)                                                |
@@ -87,6 +88,10 @@ $ docker agent run agent.yaml --theme dracula
 $ docker agent run agent.yaml --app-name "My Project"
 $ docker agent run agent.yaml --sidebar=false
 $ docker agent run agent.yaml --disable-commands="/cost,/eval,/model"
+
+# Browse and pick an agent interactively
+$ docker agent run --agent-picker
+$ docker agent run --agent-picker=agentcatalog/coder,agentcatalog/researcher
 ```
 
 ### `docker agent run --exec`
